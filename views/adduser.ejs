@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>List of users</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">MYShop.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/admin">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cart
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item myorders">My Orders</a>
+          </div>
+        </li>
+        <%if(admin==true){%>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/product/showproduct">Show Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/userslist">Users List <span class="sr-only">(current)</span></a>
+            </li>
+        <%}%>
+      </ul>
+    </div>
+    </nav>
+    <button type="button" class="btn btn-primary" data-toggle="modal" style="float:right;" data-target="#exampleModal">
+        Add User
+    </button>
+    <div class="container" id="mytable">
+        <table class="table table-hover" id="productlist" style="padding:30px">
+            <thead>
+              <tr>
+                <th scope="col">User Email</th>
+                <th scope="col">Admin</th>
+              </tr>
+            </thead>
+            <tbody>
+            <%for(var i=0;i<details.length;i++){%>
+              <tr id="<%=details[i]._id%>name">
+                <th scope="row"><%=details[i].email%></th>
+                <td><%=details[i].Admin%></td>
+              </tr>
+            <%}%>
+            </tbody>
+          </table>
+    </div>
+
+
+      <!-- My Modal box when clicked on Add Product button -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form id="myform" action="/user/adduser">
+                        <div class="form-group row">
+                            <label for="username" class="col-md-2 col-form-label">Username:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-2 col-form-label">Email Address:</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address">
+                            </div>
+                        </div>
+      
+                        <div class="form-group row">
+                            <label for="Admin" class="col-md-2 col-form-label">Admin:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="Admin" id="sel1">
+                                  <option>false</option>
+                                  <option>true</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-2 col-form-label">Password:</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="addtolist" class="btn btn-primary">Add to the list</button>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+ 
+      <script type="text/javascript"src="../../js/orders.js"></script>   
+      <script type="text/javascript" src="../../js/newuser.js"></script>  
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Products</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">MYShop.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/admin">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cart
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item myorders">My Orders</a>
+          </div>
+        </li>
+        <%if(admin==true){%>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/product/showproduct">Show Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/userslist">Users List</a>
+            </li>
+        <%}%>
+      </ul>
+    </div>
+    </nav>
+    <button type="button" class="btn btn-primary" data-toggle="modal" style="float:right;" data-target="#exampleModal">
+        Add Product
+    </button>
+    <div class="container" id="mytable">
+      <table class="table table-hover" id="productlist" style="padding:30px">
+        <thead>
+          <tr>
+            <th scope="col">Product name</th>
+            <th scope="col">details</th>
+            <th scope="col">price</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%for(var i=0;i<details.length;i++){%>
+          <tr>
+            <th scope="row"><%=details[i].productname%></th>
+            <td><%=details[i].details%></td>
+            <td><%=details[i].price%></td>
+          </tr>
+        <%}%>
+        </tbody>
+      </table>
+    </div>
+
+
+      <!-- My Modal box when clicked on Add Product button -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form id="myform" action="/admin/product/addproduct">
+                        <div class="form-group row">
+                            <label for="productname" class="col-md-2 col-form-label">Product name:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="productname" id="productname" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="details" class="col-md-2 col-form-label">Details:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="details" id="details" placeholder="Enter details">
+                            </div>
+                        </div>
+      
+                        <div class="form-group row">
+                            <label for="price" class="col-md-2 col-form-label">Price:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="price" id="price" placeholder="Enter price">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="addtolist" class="btn btn-primary">Add to the list</button>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+ 
+      <script type="text/javascript"src="../../js/orders.js"></script>   
+      <script type="text/javascript" src="../../js/newproduct.js"></script>  
+
+</body>
+</html>
