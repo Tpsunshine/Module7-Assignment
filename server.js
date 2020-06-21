@@ -7,6 +7,7 @@ mongoose.connect("mongodb+srv://Balaraju_Sarikonda:Chiru234@cluster0-0yd7x.mongo
 app.set("view engine","ejs");
 app.set("views","./views");
 app.use(express.static(__dirname+"/public"));
+const port = process.env.PORT || 8080; 
 
 
 
@@ -15,6 +16,6 @@ app.get("/",(req,res)=>{
     res.render("loginpage",{invalid: req.query.valid?req.query.valid:""});
 });
 
-app.listen(8080,()=>{
+app.listen(port,()=>{
     console.log(chalk.blue("App isrunning on port 8080"));
 });
