@@ -12,6 +12,7 @@ const rolecheck = require("../Auth/rolecheck");
 // const role = require("role");
 const product = require("./product");
 const baseurl = "http://localhost:8080";
+const herokuurl = "https://myshopping-site/heorku";
 router.use(bodyparser.urlencoded({extended:true}));
 router.use(bodyparser.json());
 
@@ -33,6 +34,7 @@ router.get("/getproducts",rolecheck.rolecheck,(req,res)=>{
 
 });
 router.get("/showproduct",rolecheck.rolecheck,(req,res)=>{
+    console.log("base url is ");
 
     fetch(baseurl+"/admin/product/getproducts").then((data)=>data.json()
     ).then((details)=>{
