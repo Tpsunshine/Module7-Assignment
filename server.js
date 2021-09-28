@@ -2,8 +2,7 @@ const express = require("express");
 const app = require("./app");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
-// mongodb+srv://Balaraju_Sarikonda:<password>@cluster0-0yd7x.mongodb.net/<dbname>?retryWrites=true&w=majority
-mongoose.connect("mongodb+srv://Balaraju_Sarikonda:Chiru234@cluster0-0yd7x.mongodb.net/shoppingsite?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://Edu-training:<Z45$gcazhpq>@cluster0.rsz3c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 app.set("view engine","ejs");
 app.set("views","./views");
 app.use(express.static(__dirname+"/public"));
